@@ -6,7 +6,6 @@ const {
   patchDepartment,
   deleteDepartment,
 } = require('../controller/department-control');
-const Department = require('../db/models/department-schema');
 const router = express.Router();
 
 router.get('/', getDepartment);
