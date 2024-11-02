@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 //Routes
-const routes = require('./Routes');
+const routes = require('./Routes'); // /index.js default
 
 app.use(routes);
 app.use('*', (req, res) => {

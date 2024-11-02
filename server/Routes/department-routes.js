@@ -1,11 +1,17 @@
-const express = require('require');
-const Department = require('../db//models/department-schema');
-
+const express = require('express');
+const {
+  getDepartment,
+  getIdDepartment,
+  postDepartment,
+  patchDepartment,
+  deleteDepartment,
+} = require('../controller/department-control');
+const Department = require('../db/models/department-schema');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  try {
-    const department = await Department.find();
-    res.status(200);
-  } catch (error) {}
-});
+router.get('/', getDepartment);
+router.get('/:id', getIdDepartment);
+router.post('/', postDepartment);
+router.patch('/:id', patchDepartment);
+router.delete('/:id', deleteDepartment);
+module.exports = router;
