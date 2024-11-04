@@ -3,6 +3,10 @@ const cors = require('cors');
 const db = require('./db/db');
 const Admin = require('./db/models/admin-schema');
 const app = express();
+const env = require('dotenv');
+
+//config env
+env.config({ path: './.env' });
 
 //middleware
 app.use(cors());

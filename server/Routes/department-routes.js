@@ -6,9 +6,10 @@ const {
   patchDepartment,
   deleteDepartment,
 } = require('../controller/department-control');
+const checkToken = require('../middlewares/check-token');
 const router = express.Router();
 
-router.get('/', getDepartment);
+router.get('/', checkToken, getDepartment);
 router.get('/:id', getIdDepartment);
 router.post('/', postDepartment);
 router.patch('/:id', patchDepartment);
