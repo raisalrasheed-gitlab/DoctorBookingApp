@@ -9,6 +9,7 @@ const checkToken = (req, res, next) => {
     const token = bearerToken.split(' ')[1];
     const ismatching = jwt.verify(token, process.env.SECRET_KEY);
     console.log(ismatching);
+
     next();
   } catch (error) {
     return res.status(403).json({ message: 'you are not authorized' });

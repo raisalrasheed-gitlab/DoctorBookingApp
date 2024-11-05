@@ -10,8 +10,8 @@ const checkToken = require('../middlewares/check-token');
 const router = express.Router();
 
 router.get('/', checkToken, getDepartment);
-router.get('/:id', getIdDepartment);
-router.post('/', postDepartment);
-router.patch('/:id', patchDepartment);
-router.delete('/:id', deleteDepartment);
+router.get('/:id', checkToken, getIdDepartment);
+router.post('/', checkToken, postDepartment);
+router.patch('/:id', checkToken, patchDepartment);
+router.delete('/:id', checkToken, deleteDepartment);
 module.exports = router;

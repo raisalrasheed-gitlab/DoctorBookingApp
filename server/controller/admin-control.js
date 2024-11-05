@@ -16,7 +16,7 @@ module.exports.signup = async (req, res) => {
       email: email,
       password: hashPassword,
     });
-    res.status(202).json({ message: 'Acoount has been successfully' });
+    res.status(202).json({ message: 'Account has been successfully created' });
   } catch (error) {
     res.status(404).json({ message: error.message, error: true });
   }
@@ -35,7 +35,7 @@ module.exports.login = async (req, res) => {
         .json({ message: 'email or password is incorrect' });
     }
     const Token = await jwt.sign(
-      { _id: admin._id, role: admin.role },
+      { id: admin._id, role: admin.role },
       process.env.SECRET_KEY,
       { expiresIn: '7d' }
     );

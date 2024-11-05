@@ -2,15 +2,15 @@ const { Schema, model } = require('mongoose');
 
 const slotSchema = Schema({
   date: {
-    type: date,
+    type: Date,
     required: true,
   },
   startingtime: {
-    type: string,
+    type: String,
     required: true,
   },
   endingtime: {
-    type: string,
+    type: String,
     required: true,
   },
   slotnumber: {
@@ -35,7 +35,7 @@ const doctorSchema = Schema(
       required: true,
     },
     password: {
-      type: string,
+      type: String,
       required: true,
     },
     hospital: {
@@ -61,7 +61,6 @@ const doctorSchema = Schema(
       type: String,
       default: 'DOCTOR',
     },
-    timeslotl: [[slotSchema]],
   },
   { timestamps: true }
 );
