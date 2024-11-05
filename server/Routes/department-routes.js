@@ -9,7 +9,7 @@ const {
 const checkToken = require('../middlewares/check-token');
 const router = express.Router();
 
-router.get('/', checkToken, getDepartment);
+router.get('/', checkToken(['ADMIN']), getDepartment);
 router.get('/:id', checkToken, getIdDepartment);
 router.post('/', checkToken, postDepartment);
 router.patch('/:id', checkToken, patchDepartment);

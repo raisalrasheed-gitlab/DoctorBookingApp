@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post('/signup', signup);
 router.post('/login', login);
-router.get('/', checkToken, detail);
+router.get('/', checkToken(['DOCTOR', 'ADMIN']), detail);
 
 module.exports = router;

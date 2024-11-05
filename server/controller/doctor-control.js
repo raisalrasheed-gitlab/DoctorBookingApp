@@ -70,11 +70,12 @@ module.exports.login = async (req, res) => {
   }
   const match = await bcrypt.compare(password, doctor.password);
   if (!match) {
+    console.log('first');
     return res.status(404).json({ message: 'email or password incorrect' });
   }
   const Token = await jwt.sign(
-    { id: doctor._id, role: doctor.role },
-    process.env.DOCTOR_KEY,
+    { id: doctor.id, role: doctor.role },
+    process.env.SECRET_KEY,
     { expiresIn: '7D' }
   );
   res.status(200).json({ message: 'your are loggin ', Token });
