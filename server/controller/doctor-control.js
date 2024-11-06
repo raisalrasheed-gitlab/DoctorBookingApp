@@ -30,7 +30,7 @@ module.exports.signup = async (req, res) => {
       image: image,
     });
 
-    //mail sending
+    // ----------mail sending-----------
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -73,12 +73,72 @@ module.exports.login = async (req, res) => {
     console.log('first');
     return res.status(404).json({ message: 'email or password incorrect' });
   }
-  const Token = await jwt.sign(
+  const Token = jwt.sign(
     { id: doctor.id, role: doctor.role },
     process.env.SECRET_KEY,
     { expiresIn: '7D' }
   );
   res.status(200).json({ message: 'your are loggin ', Token });
+};
+module.exports.forgetPassword = async (req, res) => {
+  const { email } = req.body;
+  const doctor = await Doctor.findOne({ email: email });
+  if (!doctor) {
+    return res.status(404).json({ message: 'email has doesnot exist' });
+  }
+  const resetToken = jwt.sign({ id: doctor._id }, process.env.RESET_KEY, {
+    expiresIn: '1h',
+  });
+
+  var nodemailer = require('nodemailer');
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'softwaredeveloper3132@gmail.com',
+      pass: 'szrk iwcb bkoc fxws',
+    },
+  });
+
+  var mailOptions = {
+    from: 'softwaredeveloper3132@gmail.com',
+    to: email,
+    subject: 'Doc booking APP',
+    text: `Hi ${doctor.firstname},
+       password reset linke http://localhost:8001/${resetToken}
+    `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({ error: error });
+    } else {
+      return res
+        .status(200)
+        .json({ message: 'Password reset link has been sent your link' });
+    }
+  });
+};
+module.exports.resetPassword = async (req, res) => {
+  try {
+    const { email, password, confirmPassword, token } = req.body;
+    const doctor = await Doctor.findOne({ email: email });
+    if (!doctor) {
+      return res.status(404).json({ message: 'email doest not exist' });
+    }
+    if (!(password == confirmPassword)) {
+      return res.status(404).json({ message: 'password doesnot match' });
+    }
+    const ismatch = jwt.verify(token, process.env.RESET_KEY);
+    const hashedPassword = await bcrypt.hash(password, 3);
+    const dpResponse = await Doctor.findByIdAndUpdate(
+      { _id: doctor._id },
+      { password: hashedPassword }
+    );
+    return res.status(202).json({ message: 'Password has been changed' });
+  } catch (error) {
+    return res.status(404).json({ error: error });
+  }
 };
 module.exports.detail = async (req, res) => {
   const doctor = await Doctor.find();
