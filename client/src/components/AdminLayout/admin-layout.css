@@ -1,0 +1,72 @@
+.admin-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-areas: 'navbar navbar' 'sidebar mainbar' 'sidebar mainbar';
+}
+.admin-layout .nav-bar {
+  height: 80px;
+  background-color: #b9b9b9;
+  grid-area: navbar;
+}
+.admin-layout .side-bar {
+  grid-area: sidebar;
+  background-color: #b9b9b9;
+  border-radius: 1px;
+  height: 700px;
+  font-family: 'Host Grotesk', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 15x;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.admin-layout .side-bar .pages {
+  margin-top: 40px;
+  margin-left: 30px;
+  padding: 10px;
+}
+.admin-layout .side-bar .others {
+  margin-left: 30px;
+  padding: 10px;
+}
+.admin-layout .side-bar div {
+  padding: 10px;
+  margin-left: 70px;
+}
+
+.admin-layout .side-bar .link {
+  text-decoration: none;
+  text-align: left;
+  margin-left: 70px;
+  padding: 12px;
+}
+.active {
+  background-color: green;
+  color: white;
+}
+.admin-layout .side-bar .link:hover {
+  background-color: rgb(140, 197, 140);
+  color: black;
+}
+.admin-layout .main {
+  grid-area: mainbar;
+}
+
+.admin-layout .nav-bar .image {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.admin-layout .image img {
+  width: 100px;
+}
+.admin-layout .main {
+  padding: 15px;
+  background-color: #c5c7ce;
+}
