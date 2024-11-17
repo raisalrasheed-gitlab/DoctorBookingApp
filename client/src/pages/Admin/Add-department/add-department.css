@@ -1,0 +1,18 @@
+.add-dpt-form {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 50px auto;
+}
+.dpt-box1 {
+  grid-column: 2/3;
+}
+.dpt-box2 {
+  grid-row: 2/3;
+}
+.add-dpt-btn {
+  grid-row: 3/4;
+  width: 120px;
+  margin-top: 10px;
+}

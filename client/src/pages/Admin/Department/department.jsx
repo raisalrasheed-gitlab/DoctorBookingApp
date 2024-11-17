@@ -4,9 +4,11 @@ import moment from 'moment';
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../../components/AdminLayout/admin-layout';
 import { Button, Table } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Department = () => {
   const [dpt, setDpt] = useState([]);
+  const navigate = useNavigate();
   //fetching department data from database using axios
   const getDepartment = async () => {
     try {
@@ -21,7 +23,7 @@ const Department = () => {
   useEffect(() => {
     getDepartment();
   }, []);
-  //Tantd table columns configuration
+  //antd table columns configuration
   const columns = [
     {
       title: 'Id',
@@ -67,8 +69,16 @@ const Department = () => {
     },
     {
       title: 'Edit',
-      render: () => {
-        return <i className="fa-solid fa-pen-to-square table-icon-edt"></i>;
+      dataIndex: '_id',
+      render: id => {
+        return (
+          <i
+            className="fa-solid fa-pen-to-square table-icon-edt"
+            onClick={() => {
+              navigate(`/admin/department/edit/${id}`);
+            }}
+          ></i>
+        );
       },
     },
     {
@@ -103,7 +113,13 @@ const Department = () => {
   return (
     <AdminLayout heading="Department">
       <div className="dept-add-btn">
-        <Button color="blue" variant="solid">
+        <Button
+          color="blue"
+          variant="solid"
+          onClick={() => {
+            navigate('/admin/department/add');
+          }}
+        >
           Add Department
         </Button>
       </div>
