@@ -5,19 +5,27 @@ const router = express.Router();
 const Doctor = require('../db/models/doctor-schema');
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
+const hospital = require('../db/models/hospital-schema');
 
 module.exports.signup = async (req, res) => {
   try {
-    const { firstname, lastname, email, specialization, about, image } =
-      req.body;
-
+    const {
+      firstname,
+      lastname,
+      email,
+      specialization,
+      about,
+      image,
+      department,
+      hospital,
+    } = req.body;
+    console.log(req.body);
     const doctor = await Doctor.findOne({ email: email });
     if (doctor) {
       return res.status(404).json({ message: 'Account has already exist' });
     }
     //auto password generator
     const password = generator.generate({ length: 10, number: true });
-    console.log(password);
     const hashedPassword = await bcrypt.hash(password, 3);
 
     const dbResponse = await Doctor.create({
@@ -25,11 +33,13 @@ module.exports.signup = async (req, res) => {
       password: hashedPassword,
       firstname: firstname,
       lastname: lastname,
+      department: department,
+      hospital: hospital,
       specialization: specialization,
       about: about,
       image: image,
     });
-
+    console.log('done');
     // ----------mail sending-----------
     var transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -141,6 +151,24 @@ module.exports.resetPassword = async (req, res) => {
   }
 };
 module.exports.detail = async (req, res) => {
-  const doctor = await Doctor.find();
+  const doctor = await Doctor.find()
+    .populate({
+      path: 'department',
+      select: ['name'],
+    })
+    .populate({ path: 'hospital', select: ['name'] });
   res.status(202).json(doctor);
+};
+module.exports.findDoctorByIds = async (req, res) => {
+  try {
+    const { hId, dId } = req.params;
+    console.log('enetyr');
+    const doctor = await Doctor.findOne({
+      department: dId,
+      hospital: hId,
+    }).populate('hospital');
+    res.status(200).json(doctor);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
 };

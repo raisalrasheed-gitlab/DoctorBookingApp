@@ -1,12 +1,18 @@
 import { Input } from 'antd';
 import './custom-input.css';
 
-const CustomInput = ({ label, type, className, onChange }) => {
+const CustomInput = ({ label, type, onChange, value, onKey, classname }) => {
   return (
     <>
-      <div className="custom-input {className}">
+      <div>
         <label className="custom-label">{label}</label>
-        <Input type={type} className="custom-input" onChange={onChange}></Input>
+        <Input
+          type={type}
+          className="custom-input {className}"
+          onChange={onChange}
+          value={value}
+          onKeyDown={onKey}
+        ></Input>
       </div>
     </>
   );

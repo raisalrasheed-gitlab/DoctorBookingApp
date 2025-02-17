@@ -1,0 +1,39 @@
+.add-location {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+  margin-right: 10px;
+  z-index: -1;
+}
+.loc-table {
+  margin-top: 30px;
+}
+.add-location-box {
+  background-color: #ffcce1;
+  height: 300px;
+  width: 450px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 350px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.add-location-box h3 {
+  text-align: center;
+  margin-top: 20px;
+}
+.add-location-box .input {
+  margin-top: 60px;
+  width: 400px;
+  margin-left: 25px;
+}
+.add-location-box Button {
+  margin-top: 30px;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+}
+.add-location-box .button-div {
+  text-align: center;
+}

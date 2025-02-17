@@ -25,7 +25,7 @@ module.exports.signup = async (req, res) => {
     }
     const hashedPassword = await bcrypt.hash(password, 3);
     console.log(hashedPassword);
-    const dbResponse = await User.create({
+    const dbResponse = await User.Create({
       email: email,
       password: hashedPassword,
       firstname: firstname,
@@ -47,16 +47,17 @@ module.exports.signup = async (req, res) => {
 module.exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email: email });
     if (!user || !password) {
       return res.status(404).json({ message: 'email or password incorrect' });
     }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res
-        .status(404)
-        .json({ message: 'email or password is incorrect' });
+      console.log('error');
+      return res.status(404).json({ message: 'email or password incorrect' });
     }
+    console.log(match);
     const Token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.SECRET_KEY,

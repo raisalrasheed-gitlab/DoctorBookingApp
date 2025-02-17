@@ -1,0 +1,13 @@
+.main-nav {
+  background-color: #81dae3;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Mono', serif;
+  justify-content: center;
+  font-size: 12px;
+  gap: 10px;
+}
+.main-nav img {
+  width: 90px;
+}

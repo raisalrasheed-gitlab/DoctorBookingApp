@@ -1,14 +1,33 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './admin-layout.css';
+import { Input, Space } from 'antd';
+const { Search } = Input;
 
 const AdminLayout = ({ children, heading }) => {
+  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const navigate = useNavigate();
+  const onLogout = () => {
+    localStorage.removeItem('token');
+    console.log('logout');
+    navigate('/admin/login');
+  };
   return (
     <>
       <div className="admin-layout">
         <div className="nav-bar">
           <div className="image">
-            <img src="/doctor-logo.png"></img>
-            <h2>HI-DENT</h2>
+            <img src="/hospital logo.jpg"></img>
+            <h2>MedicityHospital</h2>
+          </div>
+          <div className="search">
+            <Search
+              placeholder="input search text"
+              allowClear
+              enterButton="Search"
+              size="large"
+              onSearch={onSearch}
+              color="red"
+            />
           </div>
         </div>
         <div className="side-bar">
@@ -23,6 +42,9 @@ const AdminLayout = ({ children, heading }) => {
           <NavLink className="link" to="/admin/hospital">
             Hospitals
           </NavLink>
+          <NavLink className="link" to="/admin/location">
+            Locations
+          </NavLink>
           <NavLink className="link" to="/admin/doctor">
             Doctors
           </NavLink>
@@ -30,8 +52,12 @@ const AdminLayout = ({ children, heading }) => {
             Profile
           </NavLink>
           <p className="others">Others</p>
-          <div>Setting</div>
-          <div>Logout</div>
+          <NavLink className="link" to="/">
+            Setting
+          </NavLink>
+          <div onClick={onLogout} className="logout">
+            Logout
+          </div>
         </div>
         <div className="main">
           <h2>{heading}</h2>

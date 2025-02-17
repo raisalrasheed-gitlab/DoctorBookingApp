@@ -1,5 +1,6 @@
 .add-dpt-form {
   width: 90%;
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -15,4 +16,16 @@
   grid-row: 3/4;
   width: 120px;
   margin-top: 10px;
+}
+.admin-dpt-edit-img img {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 10px;
+  width: 400px;
+  border-radius: 5px;
+}
+.dpt-close {
+  position: absolute;
+  right: 50px;
+  font-size: 25px;
 }

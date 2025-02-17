@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db/db');
-const Admin = require('./db/models/admin-schema');
+// const Admin = require('./db/models/admin-schema');
 const app = express();
 const env = require('dotenv');
 

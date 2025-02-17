@@ -5,6 +5,7 @@ const {
   detail,
   forgetPassword,
   resetPassword,
+  findDoctorByIds,
 } = require('../controller/doctor-control');
 const checkToken = require('../middlewares/check-token');
 
@@ -15,5 +16,6 @@ router.post('/login', login);
 router.post('/forget-password', forgetPassword);
 router.post('/reset-password', resetPassword);
 router.get('/', checkToken(['DOCTOR', 'ADMIN']), detail);
+router.get('/:hId/:dId', findDoctorByIds);
 
 module.exports = router;

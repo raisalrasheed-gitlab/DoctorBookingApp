@@ -1,5 +1,5 @@
 import './department.css';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import moment from 'moment';
 import { useState, useEffect } from 'react';
 import AdminLayout from '../../../components/AdminLayout/admin-layout';
@@ -32,11 +32,13 @@ const Department = () => {
       render: id => {
         return <a>{id}</a>;
       },
+      width: '10%',
     },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      width: '10%',
     },
     {
       title: 'Image',
@@ -45,12 +47,13 @@ const Department = () => {
       render: img => {
         return <img className="table-img" src={img}></img>;
       },
+      width: '10%',
     },
     {
       title: 'About',
       dataIndex: 'about',
       key: 'about',
-      width: '20%',
+      width: '40%',
     },
     {
       title: 'CreatedAt',
@@ -99,7 +102,6 @@ const Department = () => {
   ];
   // department delete
   const onDeptDelete = async id => {
-    console.log(id);
     try {
       const dbResponse = await axios.delete(
         `http://localhost:8001/department/${id}`
@@ -124,7 +126,12 @@ const Department = () => {
         </Button>
       </div>
       {/* data source and column detals */}
-      <Table columns={columns} dataSource={dpt} className="dpt-table"></Table>
+      <Table
+        columns={columns}
+        dataSource={dpt}
+        className="dpt-table"
+        borderColor="red"
+      ></Table>
     </AdminLayout>
   );
 };

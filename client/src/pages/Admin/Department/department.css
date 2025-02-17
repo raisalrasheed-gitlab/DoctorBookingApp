@@ -3,9 +3,11 @@
   justify-content: end;
   margin-top: 30px;
   margin-right: 10px;
+  z-index: -1;
 }
 .dpt-table {
   margin-top: 30px;
+  z-index: -1;
 }
 .table-img {
   width: 100px;

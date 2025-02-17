@@ -5,7 +5,7 @@ const checkToken = roles => {
       console.log('middleware worked');
       const bearerToken = req.headers.authorization;
       if (!bearerToken) {
-        return res.status(404).jons({ message: 'you are not authorized' });
+        return res.status(404).json({ message: 'you are not authorized' });
       }
       const token = bearerToken.split(' ')[1];
       const ismatching = jwt.verify(token, process.env.SECRET_KEY);

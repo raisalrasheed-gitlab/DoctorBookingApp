@@ -1,0 +1,14 @@
+.custom-select {
+  margin-top: 15px;
+  font-family: 'Roboto Mono', serif;
+  font-size: 15px;
+  display: grid;
+  gap: 15px;
+  height: 43px;
+  color: black;
+}
+
+.custom-label {
+  font-family: 'Noto Sans Georgian', serif;
+  font-weight: 600;
+}

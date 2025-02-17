@@ -23,6 +23,7 @@ module.exports.signup = async (req, res) => {
 };
 module.exports.login = async (req, res) => {
   try {
+    console.log('enter', req.body);
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email: email });
     if (!admin) {
@@ -39,8 +40,15 @@ module.exports.login = async (req, res) => {
       process.env.SECRET_KEY,
       { expiresIn: '7d' }
     );
-    return res.status(200).json({ message: 'you are loginIn', token: Token });
+    return res
+      .status(200)
+      .json({ message: 'you are loginIn', token: Token, id: admin._id });
   } catch (error) {
     res.status(500).json({ message: error.message, error: true });
   }
+};
+module.exports.detail = async (req, res) => {
+  const { id } = req.params;
+  const admin = await Admin.findById(id);
+  res.status(200).json(admin);
 };

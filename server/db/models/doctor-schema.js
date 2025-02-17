@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, default: mongoose } = require('mongoose');
 
 const slotSchema = Schema({
   date: {
@@ -16,6 +16,10 @@ const slotSchema = Schema({
   slotnumber: {
     type: Number,
     required: true,
+  },
+  isBooked: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -61,6 +65,14 @@ const doctorSchema = Schema(
       type: String,
       default: 'DOCTOR',
     },
+    slot: [
+      {
+        patient: { type: Schema.Types.ObjectId },
+        date: { type: Date },
+        time: { type: String },
+        isBooked: { type: Boolean, default: false },
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -1,18 +1,37 @@
+* {
+  box-sizing: border-box;
+}
 .admin-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
   grid-template-areas: 'navbar navbar' 'sidebar mainbar' 'sidebar mainbar';
 }
 .admin-layout .nav-bar {
-  height: 80px;
-  background-color: #b9b9b9;
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  height: 70px;
+  background-color: #75cac3;
   grid-area: navbar;
+  display: flex;
+  align-items: center;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+}
+.admin-layout .nav-bar .search {
+  margin-left: 290px;
+  width: 500px;
 }
 .admin-layout .side-bar {
   grid-area: sidebar;
-  background-color: #b9b9b9;
+  z-index: 2;
+  position: sticky;
+  height: calc(100vh - 70px);
+  align-self: start;
+  background-color: #c9f0d6;
   border-radius: 1px;
-  height: 700px;
+  top: 70px;
   font-family: 'Host Grotesk', sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -42,7 +61,7 @@
   margin-left: 70px;
   padding: 12px;
 }
-.active {
+.link.active {
   background-color: green;
   color: white;
 }
@@ -56,17 +75,34 @@
 
 .admin-layout .nav-bar .image {
   display: flex;
+  gap: 10px;
   align-items: center;
   margin-left: 5px;
-  font-family: 'Sour Gummy', sans-serif;
-  font-weight: 800;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 100;
   font-size: 18px;
-  text-decoration: underline;
+  text-shadow: 1px 1px 2px pink;
 }
 .admin-layout .image img {
-  width: 100px;
+  width: 45px;
+  border-radius: 2px;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+.admin-layout .image h2 {
+  margin-top: 15px;
 }
 .admin-layout .main {
-  padding: 15px;
-  background-color: #c5c7ce;
+  padding: 45px;
+  background: rgb(200, 216, 229);
+
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 2px;
+}
+.setting,
+.logout {
+  cursor: pointer;
+  color: red;
+}
+@media screen and (min-width: 480) {
 }

@@ -1,5 +1,8 @@
 .custom-input {
   margin-top: 15px;
+  font-family: 'Roboto Mono', serif;
+  font-size: 15px;
+  padding: 8px;
 }
 .custom-label {
   font-family: 'Noto Sans Georgian', serif;
